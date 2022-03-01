@@ -1,16 +1,18 @@
-# windows_exe
+# Windows App 
 
-A new Flutter project.
+# Funciona mas na base dos Macetes,
+# não dá hot-reload e nem restart
 
-## Getting Started
+## Para rodar
 
-This project is a starting point for a Flutter application.
+### Se não existir diretorio Build rodar e esperar dar Erro
+### será criado
 
-A few resources to get you started if this is your first Flutter project:
+### Copiar arquivo app.so
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### de: \build\windows\app.so
+### para \build\windows\runner\Debug\data\app.so
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Este foi testado no Installer versão Release e rodou bem
+### Atenção no main para a rotina que faz funcionar o 
+### listview.builder usando o mouse

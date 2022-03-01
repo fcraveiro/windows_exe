@@ -1,6 +1,7 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:path_provider/path_provider.dart';
-import 'dart:developer';
+import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:supabase/supabase.dart';
@@ -13,9 +14,9 @@ class Stream extends StatefulWidget {
   _StreamState createState() => _StreamState();
 }
 
-const supabaseUrl = 'https://pfadasbrbkwhqcecijnp.supabase.co';
-const supabaseKey =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBmYWRhc2JyYmt3aHFjZWNpam5wIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDUzODMxMTYsImV4cCI6MTk2MDk1OTExNn0.LUQhDSpu3PzeahG7rCjxKXVffo0FUYgxQ5jq47vMbc0';
+int c = 0;
+const supabaseUrl = '';
+const supabaseKey = '';
 
 final client = SupabaseClient(supabaseUrl, supabaseKey);
 
@@ -45,7 +46,7 @@ class _StreamState extends State<Stream> {
                         .order('streamData', ascending: false)
                         .execute()
                         .handleError((e) => {
-                              log('erro $e'),
+                              dev.log('erro $e'),
                             }),
                     builder: (BuildContext context,
                         AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
@@ -142,20 +143,21 @@ class _StreamState extends State<Stream> {
       streamThumbUrl: pathServer,
     );
     Map<String, dynamic> aulaJson = campos.toJson();
-    log(aulaJson.toString());
+    dev.log(aulaJson.toString());
     await client
         .from('aula')
         .insert(aulaJson)
         .execute()
-        .then((value) => log(value.error.toString()));
+        .then((value) => dev.log(value.error.toString()));
   }
 
   imagemFromAsset(String path) async {
-    final byteData = await rootBundle.load('assets/imagens/$path');
+    var fotinho = escolheFoto();
+    final byteData = await rootBundle.load(fotinho);
     final file = File('${(await getTemporaryDirectory()).path}/$path');
     await file.writeAsBytes(byteData.buffer
         .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-    log(file.path.toString());
+    dev.log(file.path.toString());
     //
     DateTime now = DateTime.now();
     var idFoto = now.toString() + '.jpg';
@@ -166,4 +168,19 @@ class _StreamState extends State<Stream> {
       },
     );
   }
+}
+
+escolheFoto() {
+  var gg = random(1, 7).toString();
+  String fotinho1 = 'assets/imagens/foto';
+  String fotinho2 = '.jpg';
+  c = int.parse(gg);
+  String fotona = fotinho1 + c.toString() + fotinho2;
+  dev.log('FOTONA = ${fotona.toString()}');
+  return fotona;
+}
+
+random(min, max) {
+  var rn = Random();
+  return min + rn.nextInt(max - min);
 }
