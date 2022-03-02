@@ -2,9 +2,9 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "FlutterStream"
-#define MyAppVersion "1.4"
-#define MyAppPublisher "My Company, Inc."
-#define MyAppURL "https://www.example.com/"
+#define MyAppVersion "2.1"
+#define MyAppPublisher "Fernando Craveiro Inc"
+#define MyAppURL "https://github.com/fcraveiro/windows_exe/"
 #define MyAppExeName "windows_exe.exe"
 
 [Setup]
@@ -23,7 +23,7 @@ DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=D:\flutterdev\windows_exe\installer
-OutputBaseFilename=flutter_stream_v1.4
+OutputBaseFilename=flutter_stream_v2.1
 SetupIconFile=D:\flutterdev\windows_exe\assets\imagens\fluttericon.ico
 Compression=lzma
 SolidCompression=yes
